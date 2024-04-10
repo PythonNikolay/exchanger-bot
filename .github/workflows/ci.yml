@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - master
+      - develop
 
 env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   IMAGE_NAME: exchanger-bot
   IMAGE_TAG: v1.0
 
@@ -20,14 +22,21 @@ jobs:
 
     steps:
       - name: Git clone
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Build images
+      - name: Set image tag and build
         run: |
+          if [ ${{ github.ref }} = 'refs/heads/develop' ]; then
+            export IMAGE_TAG="${IMAGE_TAG}-dev"
+          else
+            export IMAGE_TAG="$IMAGE_TAG"
+          fi
+          echo "Image tag is $IMAGE_TAG"
+          echo "::set-env name=IMAGE_TAG::$IMAGE_TAG"
           docker build . --tag $IMAGE_NAME:$IMAGE_TAG
 
       - name: Login to Github Packages
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
