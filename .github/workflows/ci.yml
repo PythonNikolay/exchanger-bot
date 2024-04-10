@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
 
 env:
   IMAGE_NAME: exchanger-bot
@@ -20,7 +21,16 @@ jobs:
 
     steps:
       - name: Git clone
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Set image tag based on branch
+        run: |
+          if [ ${{ github.ref }} = 'refs/heads/develop' ]; then
+            export IMAGE_TAG="${IMAGE_TAG}-dev"
+          else
+            export IMAGE_TAG="$IMAGE_TAG"
+          fi
+          echo "Image tag is $IMAGE_TAG"
 
       - name: Build images
         run: |
