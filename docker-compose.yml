@@ -3,9 +3,9 @@ version: '3'
 
 services:
   exchanger_bot:
-    build: .
-    volumes:
-      - .:/usr/src/app
+    container_name: exchanger-bot
+    restart: unless-stopped
+    image: ghcr.io/pythonnikolay/exchanger-bot:v1.0
     env_file:
       - .env
 
