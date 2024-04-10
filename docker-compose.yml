@@ -3,7 +3,7 @@ version: '3'
 
 services:
   exchanger_bot:
-    build: .
+    image: ghcr.io/pythonnikolay/exchanger-bot:v1.0
     volumes:
       - .:/usr/src/app
     env_file:
