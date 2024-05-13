@@ -1,6 +1,6 @@
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from core.utils.statesform import StepsMilesKm, StepsKmMiles, StepsLbsKg, StepsKgLbs, StepsCF, StepsFC
+from core.utils.statesform import StepsMilesKm, StepsKmMiles, StepsLbsKg, StepsKgLbs, StepsCF, StepsFC, StepsOzMl, StepsMlOz
 
 async def convert_units(message: Message, state: FSMContext, source_unit: str, target_unit: str, conversion_factor: float, offset: float = 0):
     try:
@@ -68,3 +68,19 @@ async def get_fahrenheit_result(message: Message, state: FSMContext):
     else:
         await message.answer("<b>Error: please enter number(s) only!</b>")
         await state.clear()
+
+# Fl oz to Ml
+async def get_oz(message: Message, state: FSMContext):
+    await message.answer(f'Please enter ounce(s):')
+    await state.set_state(StepsOzMl.GET_OZ)
+
+async def get_oz_result(message: Message, state: FSMContext):
+    await convert_units(message, state, 'oz', 'ml', 29.5735)
+
+# Ml to Fl oz
+async def get_ml(message: Message, state: FSMContext):
+    await message.answer(f'Please enter milliliter(s):')
+    await state.set_state(StepsMlOz.GET_ML)
+
+async def get_ml_result(message: Message, state: FSMContext):
+    await convert_units(message, state, 'ml', 'oz', 0.033814)
