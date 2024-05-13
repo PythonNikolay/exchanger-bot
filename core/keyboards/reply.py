@@ -8,6 +8,8 @@ def get_reply_keyboard():
   keyboard_builder.button(text='Km to Miles')
   keyboard_builder.button(text='Lbs to Kg')
   keyboard_builder.button(text='Kg to Lbs')
+  keyboard_builder.button(text='Fl oz to Ml')
+  keyboard_builder.button(text='Ml to Fl oz')
   keyboard_builder.button(text='°F to °C')
   keyboard_builder.button(text='°C to °F')
   keyboard_builder.adjust(1, 2, 2, 2)
