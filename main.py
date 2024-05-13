@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, F
 from core.handlers.basic import get_start, get_currency_today, get_help
 from core.utils.commands import set_commands
 from core.handlers import form
-from core.utils.statesform import StepsMilesKm, StepsKmMiles, StepsKgLbs, StepsLbsKg, StepsCF, StepsFC
+from core.utils.statesform import StepsMilesKm, StepsKmMiles, StepsKgLbs, StepsLbsKg, StepsCF, StepsFC, StepsOzMl, StepsMlOz
 from aiogram.client.bot import DefaultBotProperties
 
 bot_token = os.getenv('BOT_TOKEN')
@@ -39,6 +39,12 @@ async def start():
 
   dp.message.register(form.get_kg, F.text.lower().startswith('kg to lbs'))
   dp.message.register(form.get_kg_result, StepsKgLbs.GET_KG)
+
+  dp.message.register(form.get_oz, F.text.lower().startswith('fl oz to ml'))
+  dp.message.register(form.get_oz_result, StepsOzMl.GET_OZ)
+
+  dp.message.register(form.get_ml, F.text.lower().startswith('ml to fl oz'))
+  dp.message.register(form.get_ml_result, StepsMlOz.GET_ML)
 
   dp.message.register(form.get_fahrenheit, F.text.lower().startswith('°f to °c'))
   dp.message.register(form.get_fahrenheit_result, StepsFC.GET_F)

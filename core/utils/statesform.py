@@ -3,8 +3,6 @@ from aiogram.fsm.state import StatesGroup, State
 
 class StepsMilesKm(StatesGroup):
   GET_MILES = State()
-  # GET_SECOND_CURRENCY = State()
-  # GET_AMMONT = State()
 
 class StepsKmMiles(StatesGroup):
   GET_KM = State()
@@ -20,3 +18,9 @@ class StepsFC(StatesGroup):
 
 class StepsCF(StatesGroup):
   GET_C = State()
+
+class StepsOzMl(StatesGroup):
+  GET_OZ = State()
+
+class StepsMlOz(StatesGroup):
+  GET_ML = State()
