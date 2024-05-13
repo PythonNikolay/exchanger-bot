@@ -1,4 +1,4 @@
-Exchanger bot v1.0 for Telegram
+Exchanger bot v1.1 for Telegram
 
 How to install:
 

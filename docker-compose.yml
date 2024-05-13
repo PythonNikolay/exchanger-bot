@@ -5,7 +5,7 @@ services:
   exchanger_bot:
     container_name: exchanger-bot
     restart: unless-stopped
-    image: ghcr.io/pythonnikolay/exchanger-bot:v1.0
+    image: ghcr.io/pythonnikolay/exchanger-bot:v1.1
     env_file:
       - .env
 
