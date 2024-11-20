@@ -9,7 +9,7 @@ on:
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   IMAGE_NAME: exchanger-bot
-  IMAGE_TAG: v1.1
+  IMAGE_TAG: v1.2
 
 jobs:
   ci:
